@@ -1,0 +1,36 @@
+{
+  "name": "tap-json",
+  "version": "0.1.0",
+  "description": "JSON TAP output formatter.",
+  "bin": {
+    "tap-json": "bin/tap-json"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gummesson/tap-json.git"
+  },
+  "keywords": [
+    "test",
+    "tap",
+    "tape",
+    "mocha",
+    "reporter"
+  ],
+  "author": "Ellen Gummesson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gummesson/tap-json/issues"
+  },
+  "homepage": "https://github.com/gummesson/tap-json",
+  "devDependencies": {
+    "tape": "^2.12.3"
+  },
+  "dependencies": {
+    "tap-parser": "^0.4.3",
+    "through2": "^0.4.1",
+    "duplexer": "^0.1.1"
+  }
+}
