@@ -31,8 +31,6 @@ function transform(type, input) {
 
 var data = [];
 var name = null;
-var pass = 0;
-var fail = 0;
 
 tap.on('comment', function(res) {
   name = res;
@@ -46,8 +44,6 @@ tap.on('assert', function(res) {
     ok: res.ok,
     extra: {}
   };
-  if (res.ok) { pass = parseFloat(pass) + 1; }
-  if (!res.ok) { fail = parseFloat(fail) + 1; }
   data.push(assert);
 });
 
@@ -67,8 +63,8 @@ tap.on('results', function(res) {
   var json = {
     stats: {
       asserts: res.asserts.length,
-      passes: pass,
-      failures: fail
+      passes: res.pass.length,
+      failures: res.fail.length
     },
     asserts: data
   };
