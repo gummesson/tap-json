@@ -1,4 +1,4 @@
-# tap-json
+# ava-tap-json
 
 JSON TAP output formatter.
 
