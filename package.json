@@ -1,7 +1,7 @@
 {
-  "name": "tap-json",
+  "name": "ava-tap-json",
   "version": "1.0.0",
-  "description": "JSON TAP output formatter.",
+  "description": "JSON TAP output formatter for AVA",
   "main": "index.js",
   "bin": {
     "tap-json": "bin/tap-json"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gummesson/tap-json.git"
+    "url": "https://github.com/yovasx2/ava-tap-json.git"
   },
   "keywords": [
     "test",
@@ -20,12 +20,12 @@
     "mocha",
     "reporter"
   ],
-  "author": "Ellen Gummesson",
+  "author": "Giovanni Alberto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gummesson/tap-json/issues"
+    "url": "https://github.com/yovasx2/ava-tap-json/issues"
   },
-  "homepage": "https://github.com/gummesson/tap-json",
+  "homepage": "https://github.com/yovasx2/ava-tap-json",
   "devDependencies": {
     "tape": "^2.12.3"
   },
