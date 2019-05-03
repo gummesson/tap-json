@@ -32,12 +32,12 @@ module.exports = function() {
   tap.on('extra', function(res) {
     if (res !== '' && filter(res)) {
       var id = [data.length - 1];
-      var op = match('operator', res);
-      var ac = match('actual', res);
-      var ex = match('expected', res);
-      if (op) { data[id].extra.operator = op; }
-      if (ac) { data[id].extra.actual = ac; }
-      if (ex) { data[id].extra.expected = ex; }
+      var name = match('name', res);
+      var msg = match('message', res);
+      var at = match('at', res);
+      if (name) { data[id].extra.name = name.replace(/'/g,''); }
+      if (msg) { data[id].extra.message = msg.replace(/'/g,''); }
+      if (at) { data[id].extra.at = at.replace(/'/g,''); }
     }
   });
 
