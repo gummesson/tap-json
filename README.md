@@ -1,26 +1,26 @@
 # ava-tap-json
 
-JSON TAP output formatter.
+JSON TAP output formatter for AVA.
 
 ## Installation
 
 ~~~ text
-npm install -g tap-json
-npm install tap-json --save-dev
+npm install -g ava-tap-json
+npm install ava-tap-json --save-dev
 ~~~
 
 ## Usage
 
 ~~~ text
-tape test/*.js | tap-json
-node test.js | ./node_modules/tap-json/bin/tap-json
+tape test/*.js | ava-tap-json
+node test.js | ./node_modules/ava-tap-json/bin/ava-tap-json
 ~~~
 
 ## Output
 
-![tap-json](http://i.imgur.com/LvDpOuz.png)
+![ava-tap-json](http://i.imgur.com/LvDpOuz.png)
 
-![tap-json](http://i.imgur.com/hSytjmn.png)
+![ava-tap-json](http://i.imgur.com/hSytjmn.png)
 
 ~~~ json
 {
