@@ -32,9 +32,9 @@ module.exports = function() {
   tap.on('extra', function(res) {
     if (res !== '' && filter(res)) {
       var id = [data.length - 1];
-      var name = match('name', res);
-      var msg = match('message', res);
-      var at = match('at', res);
+      var name = match('name:', res);
+      var msg = match('message:', res);
+      var at = match('at:', res);
       if (name) { data[id].extra.name = name.replace(/'/g,''); }
       if (msg) { data[id].extra.message = msg.replace(/'/g,''); }
       if (at) { data[id].extra.at = at.replace(/'/g,''); }
@@ -69,6 +69,6 @@ function match(type, input) {
 }
 
 function transform(type, input) {
-  var match = new RegExp('\\s+' + type + ':\\s+');
+  var match = new RegExp('\\s+' + type + '\\s+');
   return input.replace(match, '');
 }
