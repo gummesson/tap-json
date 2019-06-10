@@ -1,8 +1,8 @@
 /* Modules */
 
-var parser   = require('tap-parser');
-var through  = require('through2');
-var duplexer = require('duplexer');
+var parser = require("tap-parser");
+var through = require("through2");
+var duplexer = require("duplexer");
 
 /* Parser */
 
@@ -13,12 +13,13 @@ module.exports = function() {
 
   var data = [];
   var name = null;
+  var lastTag = null;
 
-  tap.on('comment', function(res) {
+  tap.on("comment", function(res) {
     name = res;
   });
 
-  tap.on('assert', function(res) {
+  tap.on("assert", function(res) {
     var assert = {
       number: res.number,
       comment: name,
@@ -29,19 +30,23 @@ module.exports = function() {
     data.push(assert);
   });
 
-  tap.on('extra', function(res) {
-    if (res !== '' && filter(res)) {
+  tap.on("extra", function(res) {
+    if (shouldBeParsed(res)) {
       var id = [data.length - 1];
-      var name = match('name:', res);
-      var msg = match('message:', res);
-      var at = match('at:', res);
-      if (name) { data[id].extra.name = name.replace(/'/g,''); }
-      if (msg) { data[id].extra.message = msg.replace(/'/g,''); }
-      if (at) { data[id].extra.at = at.replace(/'/g,''); }
+      const { key, value } = extractKeyAndValue(res);
+
+      if (key) {
+        lastTag = key;
+        data[id].extra[key] = isMultiline(value)
+          ? []
+          : [value.replace(/'/g, "")];
+      } else if (Array.isArray(data[id].extra[lastTag])) {
+        data[id].extra[lastTag].push(value);
+      }
     }
   });
 
-  tap.on('results', function(res) {
+  tap.on("results", function(res) {
     var json = {
       stats: {
         asserts: res.asserts.length,
@@ -58,17 +63,30 @@ module.exports = function() {
 
 /* Helpers */
 
-function filter(input) {
-  if (input.match(/(-{3}|\.{3})/)) { return; }
-  return true;
+const TAGS = ["name", "message", "at"];
+
+function validTagsRegExp() {
+  return new RegExp(TAGS.map(elem => `\\s+${elem}:\\s+`).join("|"), "g");
 }
 
-function match(type, input) {
-  if (input.match(type)) { return transform(type, input); }
-  return;
+function isMultiline(input) {
+  return input === ">-";
 }
 
-function transform(type, input) {
-  var match = new RegExp('\\s+' + type + '\\s+');
-  return input.replace(match, '');
+function extractKeyAndValue(input) {
+  let key = undefined;
+  let value = input;
+  const match = input.match(validTagsRegExp());
+
+  if (match) {
+    key = match[0].trim().slice(0, -1);
+    value = input.replace(validTagsRegExp(), "");
+  }
+
+  return { key, value: value.replace(/'/g, "").trim() };
+}
+
+function shouldBeParsed(input) {
+  const extraDelimiterOrCommentRegExp = /-{3}|\.{3}|^\*/;
+  return !(input === "" || extraDelimiterOrCommentRegExp.test(input.trim()));
 }
