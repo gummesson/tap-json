@@ -87,6 +87,6 @@ function extractKeyAndValue(input) {
 }
 
 function shouldBeParsed(input) {
-  const extraDelimiterOrCommentRegExp = /-{3}|\.{3}|^\*/;
+  const extraDelimiterOrCommentRegExp = /-{3}|\.{3}|^\s*\*|^\s*#/;
   return !(input === "" || extraDelimiterOrCommentRegExp.test(input.trim()));
 }
