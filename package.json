@@ -1,6 +1,6 @@
 {
   "name": "ava-tap-json",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "JSON TAP output formatter for AVA",
   "main": "index.js",
   "bin": {
