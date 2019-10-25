@@ -1,5 +1,8 @@
 # Ava TAP JSON
 
+## 2.0.4
+The binary name was fixed
+
 ## 2.0.1
 AVA 2.3.0 is printing logs starting with `#` instead of `*`, we included this new character in our parser and created an [issue](https://github.com/vadimdemedes/supertap/issues/3) to remove * from https://github.com/vadimdemedes/supertap
 
