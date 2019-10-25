@@ -4,7 +4,7 @@
   "description": "JSON TAP output formatter for AVA",
   "main": "index.js",
   "bin": {
-    "tap-json": "bin/tap-json"
+    "ava-tap-json": "bin/ava-tap-json"
   },
   "scripts": {
     "test": "make test"
